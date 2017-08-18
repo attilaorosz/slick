@@ -1140,40 +1140,82 @@
 
         if (_.options.variableWidth === true) {
 
-            if (_.slideCount <= _.options.slidesToShow || _.options.infinite === false) {
-                targetSlide = _.$slideTrack.children('.slick-slide').eq(slideIndex);
-            } else {
-                targetSlide = _.$slideTrack.children('.slick-slide').eq(slideIndex + _.options.slidesToShow);
-            }
+            if(_.options.vertical === false) {
 
-            if (_.options.rtl === true) {
-                if (targetSlide[0]) {
-                    targetLeft = (_.$slideTrack.width() - targetSlide[0].offsetLeft - targetSlide.width()) * -1;
-                } else {
-                    targetLeft =  0;
-                }
-            } else {
-                targetLeft = targetSlide[0] ? targetSlide[0].offsetLeft * -1 : 0;
-            }
-
-            if (_.options.centerMode === true) {
                 if (_.slideCount <= _.options.slidesToShow || _.options.infinite === false) {
                     targetSlide = _.$slideTrack.children('.slick-slide').eq(slideIndex);
                 } else {
-                    targetSlide = _.$slideTrack.children('.slick-slide').eq(slideIndex + _.options.slidesToShow + 1);
+                    targetSlide = _.$slideTrack.children('.slick-slide').eq(slideIndex + _.options.slidesToShow);
                 }
 
                 if (_.options.rtl === true) {
                     if (targetSlide[0]) {
                         targetLeft = (_.$slideTrack.width() - targetSlide[0].offsetLeft - targetSlide.width()) * -1;
                     } else {
-                        targetLeft =  0;
+                        targetLeft = 0;
                     }
                 } else {
                     targetLeft = targetSlide[0] ? targetSlide[0].offsetLeft * -1 : 0;
                 }
 
-                targetLeft += (_.$list.width() - targetSlide.outerWidth()) / 2;
+                if (_.options.centerMode === true) {
+                    if (_.slideCount <= _.options.slidesToShow || _.options.infinite === false) {
+                        targetSlide = _.$slideTrack.children('.slick-slide').eq(slideIndex);
+                    } else {
+                        targetSlide = _.$slideTrack.children('.slick-slide').eq(slideIndex + _.options.slidesToShow + 1);
+                    }
+
+                    if (_.options.rtl === true) {
+                        if (targetSlide[0]) {
+                            targetLeft = (_.$slideTrack.width() - targetSlide[0].offsetLeft - targetSlide.width()) * -1;
+                        } else {
+                            targetLeft = 0;
+                        }
+                    } else {
+                        targetLeft = targetSlide[0] ? targetSlide[0].offsetLeft * -1 : 0;
+                    }
+
+                    targetLeft += (_.$list.width() - targetSlide.outerWidth()) / 2;
+                }
+
+            }
+            else
+            {
+                if (_.slideCount <= _.options.slidesToShow || _.options.infinite === false) {
+                    targetSlide = _.$slideTrack.children('.slick-slide').eq(slideIndex);
+                } else {
+                    targetSlide = _.$slideTrack.children('.slick-slide').eq(slideIndex + _.options.slidesToShow);
+                }
+
+                if (_.options.rtl === true) {
+                    if (targetSlide[0]) {
+                        targetLeft = (_.$slideTrack.height() - targetSlide[0].offsetTop - targetSlide.height()) * -1;
+                    } else {
+                        targetLeft = 0;
+                    }
+                } else {
+                    targetLeft = targetSlide[0] ? targetSlide[0].offsetTop * -1 : 0;
+                }
+
+                if (_.options.centerMode === true) {
+                    if (_.slideCount <= _.options.slidesToShow || _.options.infinite === false) {
+                        targetSlide = _.$slideTrack.children('.slick-slide').eq(slideIndex);
+                    } else {
+                        targetSlide = _.$slideTrack.children('.slick-slide').eq(slideIndex + _.options.slidesToShow + 1);
+                    }
+
+                    if (_.options.rtl === true) {
+                        if (targetSlide[0]) {
+                            targetLeft = (_.$slideTrack.height() - targetSlide[0].offsetTop - targetSlide.height()) * -1;
+                        } else {
+                            targetLeft = 0;
+                        }
+                    } else {
+                        targetLeft = targetSlide[0] ? targetSlide[0].offsetTop * -1 : 0;
+                    }
+
+                    targetLeft += (_.$list.height() - targetSlide.outerHeight()) / 2;
+                }
             }
         }
 
